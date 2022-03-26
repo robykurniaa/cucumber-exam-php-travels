@@ -3,6 +3,7 @@ package com.juaracoding.cucumberexam.glue;
 import static org.junit.Assert.assertEquals;
 
 import org.junit.AfterClass;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -14,6 +15,7 @@ import com.juaracoding.cucumberexam.pages.HotelsBookingPage;
 import com.juaracoding.cucumberexam.pages.LoginPage;
 import com.juaracoding.cucumberexam.utils.ConfigurationProperties;
 import com.juaracoding.cucumberexam.utils.Constants;
+import com.juaracoding.cucumberexam.utils.Tools;
 
 import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
@@ -30,6 +32,7 @@ public class StepDefinition {
 	private LoginPage loginPage;
 	private HotelsBookingPage hotelsBookingPage;
 	private FlightsBookingPage flightsBookingPage;
+	private Tools tools;
 
 	@Autowired
 	ConfigurationProperties configurationProperties;
@@ -40,6 +43,7 @@ public class StepDefinition {
 		loginPage = new LoginPage();
 		hotelsBookingPage = new HotelsBookingPage();
 		flightsBookingPage = new FlightsBookingPage();
+		tools = new Tools();
 	}
 
 	@AfterClass
@@ -60,50 +64,53 @@ public class StepDefinition {
 
 	@Then("Customer berhasil login")
 	public void customer_berhasil_login() {
-		// refresh
 		driver.navigate().refresh();
-		tunggu();
+		tools.tunggu();
 		assertEquals(configurationProperties.getTextWelcome(), loginPage.getTextWelcome());
 	}
 
-	@When("Customer klik menu Hotels")
-	public void customer_klik_menu_hotels() {
-		hotelsBookingPage.goToMenuHotels();
-	}
-
-	@And("Customer mengisi data pilihan hotels")
-	public void customer_mengisi_data_hotels_booking() {
-		hotelsBookingPage.inputHotelsBooking();
-		tunggu();
-	}
-
-	@Then("Customer ditampilkan pilihan hotels")
-	public void customer_ditampilkan_pilihan_hotels() {
-		assertEquals(configurationProperties.getTitleHotelsBooking(), hotelsBookingPage.getTitleHotelsBookingPage());
-	}
-
-//	@When("Customer klik menu Flights")
-//	public void customer_klik_menu_flights() {
-//		flightsBookingPage.goToMenuFlights();
+//	Hotels Menu
+//	@When("Customer klik menu Hotels")
+//	public void customer_klik_menu_hotels() {
+//		hotelsBookingPage.goToMenuHotels();
 //	}
 //
-//	@And("Customer mengisi data flights booking")
-//	public void customer_mengisi_data_flights_booking() {
-//		flightsBookingPage.inputFlightsBooking();
-//		tunggu();
+//	@And("Customer mengisi data pilihan hotels")
+//	public void customer_mengisi_data_hotels_booking() {
+//		hotelsBookingPage.selectCountry();
+//		tools.tunggu();
+//		tools.scroll();
 //	}
 //
-//	@Then("Customer ditampilkan pilihan flights")
+//	@Then("Customer ditampilkan pilihan hotels")
+//	public void customer_ditampilkan_pilihan_hotels() {
+//		assertEquals(configurationProperties.getTitleHotelsBooking(), hotelsBookingPage.getTitleHotelsBookingPage());
+//		tools.scroll();
+//	}
+
+	@When("Customer klik menu Flights")
+	public void customer_klik_menu_flights() {
+		flightsBookingPage.goToMenuFlights();
+	}
+
+	@When("Customer mengisi data flights booking")
+	public void customer_mengisi_data_flights_booking() {
+		flightsBookingPage.input();
+		tools.tunggu();
+		 JavascriptExecutor js = (JavascriptExecutor) driver;  
+		 js.executeScript("scroll(0, 300);");
+	}
+	
+	@When("Customer mengisi halaman booking")
+	public void customer_mengisi_halaman_booking() {
+
+		flightsBookingPage.informationTravellers();
+	}
+	
+//	@Then("Customer berhasil booking flights")
 //	public void customer_ditampilkan_pilihan_flights() {
 //		assertEquals(configurationProperties.getTitleFlightsBooking(), flightsBookingPage.getTitleFlightsBookingPage());
 //	}
-
-	public static void tunggu() {
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-	}
+	
 
 }

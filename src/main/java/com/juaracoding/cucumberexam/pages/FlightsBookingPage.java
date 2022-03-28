@@ -111,6 +111,8 @@ public class FlightsBookingPage {
 	
 	
 	public void informationTravellers() {
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].scrollIntoView();", firstNameTraveleers);
 		firstNameTraveleers.sendKeys("dadang");
 		lastNameTraveleers.sendKeys("dudung");
 		titleTravellers.get(2).click();

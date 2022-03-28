@@ -16,7 +16,7 @@ public class Tools {
 	
 	public void scroll () {
 		 JavascriptExecutor js = (JavascriptExecutor) driver;  
-		 js.executeScript("scroll(0, 300);");
+		 js.executeScript("scroll(0, 300)");
 	}
 
 }

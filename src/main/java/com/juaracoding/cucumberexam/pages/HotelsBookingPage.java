@@ -113,9 +113,9 @@ public class HotelsBookingPage {
 	}
 
 //	public void inputHotelsBooking() {
-//		selectCity("Aceh");
-////		selectCheckIn("30 March 2022");
-////		selectCheckOut("31 March 2022");
+//		selectCity("Singapore");
+////		selectCheckIn("30 June 2022");
+////		selectCheckOut("31 June 2022");
 ////		selectTravellers();
 //		btnSearch.click();
 //	}

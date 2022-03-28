@@ -97,13 +97,11 @@ public class StepDefinition {
 	public void customer_mengisi_data_flights_booking() {
 		flightsBookingPage.input();
 		tools.tunggu();
-		 JavascriptExecutor js = (JavascriptExecutor) driver;  
-		 js.executeScript("scroll(0, 300);");
+		
 	}
 	
 	@When("Customer mengisi halaman booking")
 	public void customer_mengisi_halaman_booking() {
-
 		flightsBookingPage.informationTravellers();
 	}
 	

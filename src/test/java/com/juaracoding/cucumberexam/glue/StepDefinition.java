@@ -7,6 +7,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.event.annotation.AfterTestClass;
 
 import com.juaracoding.cucumberexam.config.AutomationFrameworkConfig;
 import com.juaracoding.cucumberexam.drivers.DriverSingleton;
@@ -46,7 +47,7 @@ public class StepDefinition {
 		tools = new Tools();
 	}
 
-	@AfterClass
+	@AfterTestClass
 	public void closeBrowser() {
 		driver.quit();
 	}
@@ -70,24 +71,24 @@ public class StepDefinition {
 	}
 
 //	Hotels Menu
-//	@When("Customer klik menu Hotels")
-//	public void customer_klik_menu_hotels() {
-//		hotelsBookingPage.goToMenuHotels();
-//	}
-//
-//	@And("Customer mengisi data pilihan hotels")
-//	public void customer_mengisi_data_hotels_booking() {
-//		hotelsBookingPage.selectCountry();
-//		tools.tunggu();
-//		tools.scroll();
-//	}
-//
+	@When("Customer klik menu Hotels")
+	public void customer_klik_menu_hotels() {
+		hotelsBookingPage.goToMenuHotels();
+	}
+
+	@And("Customer mengisi data pilihan hotels")
+	public void customer_mengisi_data_hotels_booking() {
+		hotelsBookingPage.selectHotel(configurationProperties.getCityHotel());
+	}
+
 //	@Then("Customer ditampilkan pilihan hotels")
 //	public void customer_ditampilkan_pilihan_hotels() {
 //		assertEquals(configurationProperties.getTitleHotelsBooking(), hotelsBookingPage.getTitleHotelsBookingPage());
 //		tools.scroll();
 //	}
 
+	
+	/*
 	@When("Customer klik menu Flights")
 	public void customer_klik_menu_flights() {
 		flightsBookingPage.goToMenuFlights();
@@ -105,10 +106,10 @@ public class StepDefinition {
 		flightsBookingPage.informationTravellers();
 	}
 	
-//	@Then("Customer berhasil booking flights")
-//	public void customer_ditampilkan_pilihan_flights() {
-//		assertEquals(configurationProperties.getTitleFlightsBooking(), flightsBookingPage.getTitleFlightsBookingPage());
-//	}
-	
+	@Then("Customer berhasil booking flights")
+	public void customer_ditampilkan_pilihan_flights() {
+		assertEquals(configurationProperties.getTitleFlightsBooking(), flightsBookingPage.getTitleFlightsBookingPage());
+	}
+	*/
 
 }

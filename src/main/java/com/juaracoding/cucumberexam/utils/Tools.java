@@ -14,6 +14,21 @@ public class Tools {
 		}
 	}
 	
+	public void waitThreeSec() {
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void waitFiveSec() {
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
 	public void scroll () {
 		 JavascriptExecutor js = (JavascriptExecutor) driver;  
 		 js.executeScript("scroll(0, 300)");

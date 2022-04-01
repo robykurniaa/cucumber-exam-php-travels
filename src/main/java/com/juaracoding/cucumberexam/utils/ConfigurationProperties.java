@@ -28,6 +28,9 @@ public class ConfigurationProperties {
 
 	@Value("${titleFlightsBooking}")
 	private String titleFlightsBooking;
+	
+	@Value("${cityHotel}")
+	private String cityHotel;
 
 	public String getBrowser() {
 		return browser;
@@ -56,5 +59,11 @@ public class ConfigurationProperties {
 	public String getTitleFlightsBooking() {
 		return titleFlightsBooking;
 	}
+
+	public String getCityHotel() {
+		return cityHotel;
+	}
+	
+	
 
 }
